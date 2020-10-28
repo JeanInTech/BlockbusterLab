@@ -10,10 +10,40 @@ namespace BlockbusterLab
             :base(Name, Category, Runtime, Scenes){ }
         public override void Play()
         {
-            Console.WriteLine($"What scene would you like to watch?");
-            PrintScenes();
-            int input = Int32.Parse(Console.ReadLine().Trim());
-            Console.WriteLine($"Scene {input}: {Scenes[input]}");
+            Console.Clear();
+            bool keepWatching = true;
+            while (keepWatching)
+            {
+                Console.WriteLine($"What scene would you like to watch? [0 - {Scenes.Count - 1}]");
+                if (Int32.TryParse(Console.ReadLine().Trim(), out int input))
+                {
+                    try
+                    {
+                        Console.WriteLine($"Scene {input}: {Scenes[input]}");
+
+                        Console.Write("Do you want to keep watching? [Y/N] ");
+                        string userContinue = Console.ReadLine().Trim().ToLower();
+                        if (userContinue == "y")
+                        {
+                            continue;
+                        }
+                        else
+                        {
+                            keepWatching = false;
+                        }
+                    }
+                    catch (ArgumentOutOfRangeException)
+                    {
+                        Console.WriteLine("Invalid input, try again");
+                        continue;
+                    }
+                }
+                else
+                {
+                    Console.WriteLine("Invalid input, try again");
+                    continue;
+                }
+            }
         }
 
         public override void PlayWholeMovie()

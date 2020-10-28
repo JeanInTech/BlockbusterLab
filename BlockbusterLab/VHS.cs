@@ -65,7 +65,7 @@ namespace BlockbusterLab
                 {
                     Console.WriteLine("\nThe end. You need to rewind the movie.");
                     Rewind();
-                    Console.WriteLine($"Do you want to watch {Title} again? [Y/N]");
+                    Console.WriteLine($"Do you want to watch {Title} again?");
                     string input = Console.ReadLine().Trim().ToLower();
 
                     if (input == "y")
@@ -104,7 +104,7 @@ namespace BlockbusterLab
             }
             else
             {
-                Console.WriteLine("Rude.");
+                Console.WriteLine("You've been reported to the FBI.");
             }
 
         }
