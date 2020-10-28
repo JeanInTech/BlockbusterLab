@@ -8,11 +8,11 @@ namespace BlockbusterLab
     {
         //need to change category from string to enum
         public string Title { get; set; }
-        public string Category { get; set; }
+        public Genre Category { get; set; }
         public int Runtime { get; set; }
         public List<string> Scenes { get; set; }
         public Movie() { }
-        public Movie(string Title, string Category, int Runtime, List<string> Scenes)
+        public Movie(string Title, Genre Category, int Runtime, List<string> Scenes)
         {
             this.Title = Title;
             this.Category = Category;
@@ -21,10 +21,9 @@ namespace BlockbusterLab
         }
         public virtual void PrintInfo()
         {
-            Console.WriteLine($"Title: {Title}");
-            Console.WriteLine($"Category: {Category}");
-            Console.WriteLine($"Runtime: {Runtime} minutes");
-            PrintScenes();
+            Console.WriteLine($"\tTitle: {Title}");
+            Console.WriteLine($"\tCategory: {Category}");
+            Console.WriteLine($"\tRuntime: {Runtime} minutes");
         }
         public virtual void PrintScenes()
         {
@@ -34,5 +33,6 @@ namespace BlockbusterLab
             }
         }
         public abstract void Play();
+        public abstract void PlayWholeMovie();
     }
 }

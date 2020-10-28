@@ -16,7 +16,7 @@ namespace BlockbusterLab
                 "Festival of Fools",
                 "Frollo falls to his death"
             };
-            VHS v1 = new VHS("The Hunchback of Notre Dame", "Comedy", 91, scenes1);
+            VHS v1 = new VHS("The Hunchback of Notre Dame", Genre.Comedy, 91, scenes1);
             Movies.Add(v1);
 
             List<string> scenes2 = new List<string> 
@@ -26,7 +26,7 @@ namespace BlockbusterLab
                 "Donkey talks a lot"
 
             };
-            VHS v2 = new VHS("Shrek", "Comedy", 90, scenes2);
+            VHS v2 = new VHS("Shrek", Genre.Comedy, 90, scenes2);
             Movies.Add(v2);
 
             List<string> scenes3 = new List<string>
@@ -35,7 +35,7 @@ namespace BlockbusterLab
                 "Flubber shenanigans",
                 "Brainard and Sara save Flubber"
             };
-            VHS v3 = new VHS("Flubber", "Comedy", 93, scenes3);
+            VHS v3 = new VHS("Flubber", Genre.Comedy, 93, scenes3);
             Movies.Add(v3);
 
             List<string> scenes4 = new List<string> 
@@ -44,7 +44,7 @@ namespace BlockbusterLab
                 "Roy promises to Alexandria the end of a story for a favor",
                 "Roy finishes the story"
             };
-            DVD d1 = new DVD("The Fall", "Fantasy", 117, scenes4);
+            DVD d1 = new DVD("The Fall", Genre.Drama, 117, scenes4);
             Movies.Add(d1);
 
             List<string> scenes5 = new List<string>
@@ -53,7 +53,7 @@ namespace BlockbusterLab
                 "Ofelia completes the first two tasks and is asked to bring her brother",
                 "Ofelia refuses to hurt her brother for the final ritual"
             };
-            DVD d2 = new DVD("Pan's Labyrinth", "Horror", 119, scenes5);
+            DVD d2 = new DVD("Pan's Labyrinth", Genre.Horror, 119, scenes5);
             Movies.Add(d2);
 
             List<string> scenes6 = new List<string>
@@ -62,7 +62,7 @@ namespace BlockbusterLab
                 "Tim and Pikachu investigate Harry's disappearance",
                 "Mewtwo is freed from being controlled by bad guy"
             };
-            DVD d3 = new DVD("Detective Pikachu", "Mystery", 104, scenes6);
+            DVD d3 = new DVD("Detective Pikachu", Genre.Comedy, 104, scenes6);
             Movies.Add(d3);
         }
         public void PrintMovies()
@@ -75,13 +75,35 @@ namespace BlockbusterLab
         }
         public Movie Checkout()
         {
-            Console.WriteLine($"Please select a movie from the following list [Enter 0 - {Movies.Count - 1}]: ");
+            Console.WriteLine($"\nPlease Select a Movie from the list:");
             PrintMovies();
+            Console.Write($"\nPlease select a movie you want to watch [Enter 0 - { Movies.Count - 1}]: ");
             string input = Console.ReadLine().Trim();
-            int index = int.Parse(input);
-
-            Movie output = Movies[index];
-            return output;
+            while (true)
+            {
+                try
+                {
+                    if (Int32.TryParse(input, out int index))
+                    {
+                        Movie output = Movies[index];
+                        return output;
+                    }
+                    else
+                    {
+                        Console.WriteLine("Movie not available, try again.");
+                        Console.Write($"Please select a movie you want to watch [Enter 0 - { Movies.Count - 1}]: ");
+                        input = Console.ReadLine().Trim();
+                        continue;
+                    }
+                }
+                catch (ArgumentOutOfRangeException)
+                {
+                    Console.WriteLine("Movie not available, try again.");
+                    Console.Write($"Please select a movie you want to watch [Enter 0 - { Movies.Count - 1}]: ");
+                    input = Console.ReadLine().Trim();
+                    continue;
+                }
+            }
         }
     }
 }
