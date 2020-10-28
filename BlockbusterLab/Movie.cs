@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Threading;
 
 namespace BlockbusterLab
 {
@@ -30,6 +31,7 @@ namespace BlockbusterLab
             for (int i = 0; i < Scenes.Count; i++)
             {
                 Console.WriteLine($"{i}. {Scenes[i]}");
+                Thread.Sleep(2000);
             }
         }
         public abstract void Play();

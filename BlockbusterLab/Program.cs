@@ -62,7 +62,7 @@ namespace BlockbusterLab
                 string input = GetUserInput("\nDo you want to watch the movie? [Y/N]: ");
                 if (input == "y")
                 {
-                    input = GetUserInput("Would you like to watch the whole movie? [Y/N] ");
+                    input = GetUserInput("Did you want to play the entire movie? [Y/N] ");
                     {
                         if(input == "y")
                         {

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Threading;
 
 namespace BlockbusterLab
 {
@@ -58,27 +59,54 @@ namespace BlockbusterLab
                     string scene = Scenes[CurrentTime];
                     Console.WriteLine($"{CurrentTime} : {scene}");
                     CurrentTime++;
+                    Thread.Sleep(2000);
                 }
                 else
                 {
                     Console.WriteLine("\nThe end. You need to rewind the movie.");
-                    Console.Write("\nDo you want to rewind? [Y/N] ");
+                    Rewind();
+                    Console.WriteLine($"Do you want to watch {Title} again? [Y/N]");
                     string input = Console.ReadLine().Trim().ToLower();
+
                     if (input == "y")
                     {
                         Console.Clear();
-                        Rewind();
+                        continue;
                     }
                     else
-                    {
                         break;
-                    }
                 }
             }
         }
         public void Rewind()
         {
-            CurrentTime = 0;
+            Console.Write("\nDo you want to rewind? [Y/N] ");
+            string input = Console.ReadLine().Trim().ToLower();
+            if (input == "y")
+            {
+                Console.WriteLine("Rewinding.....");
+                Thread.Sleep(2000);
+                Console.WriteLine("....");
+                Thread.Sleep(2000);
+                Console.WriteLine("Almost halfway there");
+                Thread.Sleep(2000);
+                Console.WriteLine("wrrrrrrr");
+                Thread.Sleep(2000);
+                Console.WriteLine("....");
+                Thread.Sleep(2000);
+                Console.WriteLine("okay okay okay");
+                Thread.Sleep(2000);
+                Console.WriteLine(":)");
+                Thread.Sleep(2000);
+                Console.WriteLine("Rewinding complete.");
+                Thread.Sleep(2000);
+                CurrentTime = 0;
+            }
+            else
+            {
+                Console.WriteLine("Rude.");
+            }
+
         }
     }
 }
